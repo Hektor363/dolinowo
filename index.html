@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dolinowo – domki w Kudowie-Zdroju</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      height: 90vh;
+      background: url('hero.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <h1>Dolinowo</h1>
+    <p>Domki w sercu Gór Stołowych</p>
+  </div>
+</header>
+
+<section>
+  <h2>O nas</h2>
+  <p>
+    Dolinowo powstało z pasji do gór i potrzeby stworzenia miejsca, w którym naprawdę można odpocząć.
+    Nasze domki położone są w Kudowie-Zdroju – jednym z najstarszych uzdrowisk w Europie.
+  </p>
+</section>
+
+<section>
+  <h2>Dlaczego warto</h2>
+  <div class="features">
+    <div>🌲 Blisko natury</div>
+    <div>🔥 Grill i wiata</div>
+    <div>📶 Wi-Fi</div>
+    <div>🚗 Parking</div>
+    <div>👨‍👩‍👧‍👦 Plac zabaw</div>
+    <div>🏡 Komfort</div>
+  </div>
+</section>
+
+<section>
+  <h2>Domki</h2>
+  <p>
+    5 całorocznych domków (82 m²), salon, kuchnia, 2 sypialnie, taras, ogrzewanie podłogowe.
+  </p>
+</section>
+
+<section>
+    <h2>Galeria</h2>
+
+    <div class="gallery">
+        <img src="1.webp">
+        <img src="2.jpg">
+        <img src="3.webp">
+        <img src="4.jpg">
+        <img src="5.jpg">
+        <img src="6.webp">
+        <img src="7.webp">
+        <img src="8.jpg">
+        <img src="9.jpg">
+        <img src="10.jpg">
+        <img src="11.jpg">
+        <img src="12.jpg">
+        <img src="13.jpg">
+        <img src="15.jpg">
+    </div>
+</section>
+
+<section>
+  <h2>Rezerwacja</h2>
+  <form action="https://formspree.io/f/mzdogeed" method="POST">
+    <input type="text" name="name" placeholder="Imię" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="tel" name="phone" placeholder="Telefon">
+    <input type="date" name="from">
+    <input type="date" name="to">
+    <textarea name="message" placeholder="Wiadomość"></textarea>
+    <button type="submit">Wyślij zapytanie</button>
+  </form>
+</section>
+
+<section>
+  <h2>Kontakt</h2>
+  <p>Email: Dolinowo@wp.pl</p>
+  <p>Telefon: +48 723 215 519</p>
+  <p>Adres: Kudowa-Zdrój, ul. Tadeusza Kościuszki 64E</p>
+
+  <form action="https://formspree.io/f/mzdogeed" method="POST">
+    <input type="text" name="name" placeholder="Imię" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="message" placeholder="Wiadomość"></textarea>
+    <button type="submit">Wyślij wiadomość</button>
+  </form>
+</section>
+
+<footer>
+  <p>© Dolinowo</p>
+</footer>
+
+</body>
+</html>
