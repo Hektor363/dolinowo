@@ -1,83 +1,329 @@
+# Premium wersja strony Dolinowo – nowy `index.html`
+
+Skopiuj cały kod poniżej i podmień zawartość swojego aktualnego `index.html`.
+
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dolinowo – domki w Kudowie-Zdroju</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dolinowo – Domki w Kudowie-Zdroju</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      color: #333;
-      line-height: 1.6;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f7f5f2;
+      color: #1f1f1f;
+      line-height: 1.7;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     header {
-      height: 90vh;
-      background: url('hero.jpg') center/cover no-repeat;
+      position: relative;
+      height: 100vh;
+      background: url('hero.jpg') center center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
       text-align: center;
+      color: white;
     }
 
-    header h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 72px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+
+    .hero-content p {
+      font-size: 22px;
+      margin-bottom: 35px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: white;
+      color: black;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #f0f0f0;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.5);
+      color: white;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
     }
 
     section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
+      padding: 100px 0;
     }
 
-    h2 {
+    .section-title {
+      font-size: 42px;
       margin-bottom: 20px;
+      text-align: center;
+      color: #1f1f1f;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px;
+      color: #666;
+      font-size: 18px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-image img {
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
     }
 
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin-top: 60px;
     }
 
-    .gallery {
+    .feature-card {
+      background: white;
+      padding: 35px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .feature-card span {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .domki {
+      background: #ffffff;
+    }
+
+    .domki-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 50px;
+      align-items: center;
+    }
+
+    .domki-image img {
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .domki-list {
+      margin-top: 25px;
+    }
+
+    .domki-list li {
+      margin-bottom: 12px;
+      list-style: none;
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .domki-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #35624a;
+      font-weight: bold;
+    }
+
+    .gallery-grid {
+      columns: 3 300px;
+      column-gap: 18px;
+    }
+
+    .gallery-grid img {
+      margin-bottom: 18px;
+      border-radius: 20px;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+
+    .attractions {
+      background: #ffffff;
+    }
+
+    .attractions-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 10px;
+      gap: 25px;
+      margin-top: 50px;
     }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
+    .attraction-card {
+      background: #f7f5f2;
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    .attraction-card h3 {
+      margin-bottom: 15px;
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 50px;
+      align-items: start;
+    }
+
+    .contact-box {
+      background: white;
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
     }
 
     form {
-      display: grid;
-      gap: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
     }
 
-    input, textarea {
-      padding: 10px;
+    input,
+    textarea {
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      font-family: inherit;
       font-size: 16px;
+      background: #fafafa;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
     }
 
     button {
-      padding: 12px;
-      background: black;
-      color: white;
       border: none;
+      padding: 16px;
+      border-radius: 14px;
+      background: #1f1f1f;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #35624a;
     }
 
     footer {
       background: #111;
-      color: white;
+      color: rgba(255,255,255,0.8);
+      padding: 40px 20px;
       text-align: center;
-      padding: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 48px;
+      }
+
+      .hero-content p {
+        font-size: 18px;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
+
+      section {
+        padding: 70px 0;
+      }
     }
   </style>
 </head>
@@ -85,90 +331,217 @@
 <body>
 
 <header>
-  <div>
+  <div class="overlay"></div>
+
+  <div class="hero-content">
     <h1>Dolinowo</h1>
-    <p>Domki w sercu Gór Stołowych</p>
+    <p>Nowoczesne domki w sercu Gór Stołowych. Cisza, natura i komfortowy wypoczynek w Kudowie‑Zdroju.</p>
+
+    <div class="hero-buttons">
+      <a href="#rezerwacja" class="btn btn-primary">Sprawdź dostępność</a>
+      <a href="#galeria" class="btn btn-secondary">Zobacz galerię</a>
+    </div>
   </div>
 </header>
 
 <section>
-  <h2>O nas</h2>
-  <p>
-    Dolinowo powstało z pasji do gór i potrzeby stworzenia miejsca, w którym naprawdę można odpocząć.
-    Nasze domki położone są w Kudowie-Zdroju – jednym z najstarszych uzdrowisk w Europie.
-  </p>
-</section>
+  <div class="container">
 
-<section>
-  <h2>Dlaczego warto</h2>
-  <div class="features">
-    <div>🌲 Blisko natury</div>
-    <div>🔥 Grill i wiata</div>
-    <div>📶 Wi-Fi</div>
-    <div>🚗 Parking</div>
-    <div>👨‍👩‍👧‍👦 Plac zabaw</div>
-    <div>🏡 Komfort</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title" style="text-align:left;">Miejsce stworzone do odpoczynku</h2>
+
+        <p>
+          Dolinowo powstało z pasji do gór i potrzeby stworzenia miejsca, w którym naprawdę można zwolnić.
+        </p>
+
+        <br>
+
+        <p>
+          Nasze całoroczne domki położone są w Kudowie‑Zdroju — jednym z najpiękniejszych uzdrowisk w Polsce, tuż przy szlakach prowadzących przez Góry Stołowe.
+        </p>
+      </div>
+
+      <div class="about-image">
+        <img src="1.webp" alt="Dolinowo">
+      </div>
+    </div>
+
+    <div class="features">
+
+      <div class="feature-card">
+        <span>🌲</span>
+        <h3>Blisko natury</h3>
+        <p>Bezpośrednie sąsiedztwo szlaków i górskich tras.</p>
+      </div>
+
+      <div class="feature-card">
+        <span>🔥</span>
+        <h3>Strefa relaksu</h3>
+        <p>Wiata grillowa i przestrzeń do wspólnego wypoczynku.</p>
+      </div>
+
+      <div class="feature-card">
+        <span>📶</span>
+        <h3>Wi‑Fi i TV</h3>
+        <p>Darmowy internet oraz telewizja satelitarna.</p>
+      </div>
+
+      <div class="feature-card">
+        <span>🚗</span>
+        <h3>Prywatny parking</h3>
+        <p>Bezpłatny, zamknięty parking dla gości.</p>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<section>
-  <h2>Domki</h2>
-  <p>
-    5 całorocznych domków (82 m²), salon, kuchnia, 2 sypialnie, taras, ogrzewanie podłogowe.
-  </p>
-</section>
+<section class="domki">
+  <div class="container">
 
-<section>
-    <h2>Galeria</h2>
+    <div class="domki-content">
 
-    <div class="gallery">
-        <img src="1.webp">
-        <img src="2.jpg">
-        <img src="3.webp">
-        <img src="4.jpg">
-        <img src="5.jpg">
-        <img src="6.webp">
-        <img src="7.webp">
-        <img src="8.jpg">
-        <img src="9.jpg">
-        <img src="10.jpg">
-        <img src="11.jpg">
-        <img src="12.jpg">
-        <img src="13.jpg">
-        <img src="15.jpg">
+      <div class="domki-image">
+        <img src="8.jpg" alt="Domki Dolinowo">
+      </div>
+
+      <div>
+        <h2 class="section-title" style="text-align:left;">Komfortowe domki całoroczne</h2>
+
+        <p>
+          Oferujemy 5 identycznych domków o powierzchni 82 m², zaprojektowanych z myślą o wygodnym wypoczynku przez cały rok.
+        </p>
+
+        <ul class="domki-list">
+          <li>Salon z TV i dużą przestrzenią wypoczynkową</li>
+          <li>W pełni wyposażona kuchnia</li>
+          <li>Dwie oddzielne sypialnie</li>
+          <li>Ogrzewanie podłogowe</li>
+          <li>Prywatny taras</li>
+          <li>Widok na góry</li>
+        </ul>
+      </div>
+
     </div>
+  </div>
 </section>
 
-<section>
-  <h2>Rezerwacja</h2>
-  <form action="https://formspree.io/f/mzdogeed" method="POST">
-    <input type="text" name="name" placeholder="Imię" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="tel" name="phone" placeholder="Telefon">
-    <input type="date" name="from">
-    <input type="date" name="to">
-    <textarea name="message" placeholder="Wiadomość"></textarea>
-    <button type="submit">Wyślij zapytanie</button>
-  </form>
+<section id="galeria">
+  <div class="container">
+
+    <h2 class="section-title">Galeria</h2>
+    <p class="section-subtitle">
+      Zobacz wnętrza domków i klimat miejsca położonego w samym sercu Kotliny Kłodzkiej.
+    </p>
+
+    <div class="gallery-grid">
+      <img src="1.webp" alt="">
+      <img src="2.jpg" alt="">
+      <img src="3.webp" alt="">
+      <img src="4.jpg" alt="">
+      <img src="5.jpg" alt="">
+      <img src="6.webp" alt="">
+      <img src="7.webp" alt="">
+      <img src="8.jpg" alt="">
+      <img src="9.jpg" alt="">
+      <img src="10.jpg" alt="">
+      <img src="11.jpg" alt="">
+      <img src="12.jpg" alt="">
+      <img src="13.jpg" alt="">
+      <img src="15.jpg" alt="">
+    </div>
+
+  </div>
 </section>
 
-<section>
-  <h2>Kontakt</h2>
-  <p>Email: Dolinowo@wp.pl</p>
-  <p>Telefon: +48 723 215 519</p>
-  <p>Adres: Kudowa-Zdrój, ul. Tadeusza Kościuszki 64E</p>
+<section class="attractions">
+  <div class="container">
 
-  <form action="https://formspree.io/f/mzdogeed" method="POST">
-    <input type="text" name="name" placeholder="Imię" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="message" placeholder="Wiadomość"></textarea>
-    <button type="submit">Wyślij wiadomość</button>
-  </form>
+    <h2 class="section-title">Poznaj okolice</h2>
+
+    <div class="attractions-grid">
+
+      <div class="attraction-card">
+        <h3>Błędne Skały</h3>
+        <p>Malowniczy skalny labirynt będący jedną z największych atrakcji Gór Stołowych.</p>
+      </div>
+
+      <div class="attraction-card">
+        <h3>Kaplica Czaszek</h3>
+        <p>Jedno z najbardziej wyjątkowych miejsc historycznych w Europie.</p>
+      </div>
+
+      <div class="attraction-card">
+        <h3>Muzeum Zabawek</h3>
+        <p>Magiczne miejsce dla dzieci i dorosłych pełne nostalgii i historii.</p>
+      </div>
+
+      <div class="attraction-card">
+        <h3>Szlaki górskie</h3>
+        <p>Kudowa‑Zdrój to doskonała baza wypadowa na piesze i rowerowe wycieczki.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="rezerwacja">
+  <div class="container">
+
+    <h2 class="section-title">Zapytaj o dostępność</h2>
+
+    <div class="contact-wrapper">
+
+      <div class="contact-box">
+        <h3>Rezerwacja pobytu</h3>
+
+        <form action="https://formspree.io/f/mzdogeed" method="POST">
+          <input type="text" name="name" placeholder="Imię" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="tel" name="phone" placeholder="Telefon">
+          <input type="date" name="from">
+          <input type="date" name="to">
+          <textarea name="message" placeholder="Wiadomość"></textarea>
+
+          <button type="submit">Wyślij zapytanie</button>
+        </form>
+      </div>
+
+      <div class="contact-box">
+        <h3>Kontakt</h3>
+
+        <p><strong>Email:</strong><br> Dolinowo@wp.pl</p>
+        <br>
+        <p><strong>Telefon:</strong><br> +48 723 215 519</p>
+        <br>
+        <p><strong>Adres:</strong><br> Kudowa‑Zdrój<br>ul. Tadeusza Kościuszki 64E</p>
+
+        <form action="https://formspree.io/f/mzdogeed" method="POST">
+          <input type="text" name="name" placeholder="Imię" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Wiadomość"></textarea>
+
+          <button type="submit">Wyślij wiadomość</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <footer>
-  <p>© Dolinowo</p>
+  <p>© Dolinowo — Domki w Kudowie‑Zdroju</p>
 </footer>
 
 </body>
 </html>
+```
+
+Po podmianie:
+
+1. Zapisz `index.html`
+2. Wrzuć zmieniony plik na GitHub
+3. Vercel sam zaktualizuje stronę
+4. Odśwież stronę po ok. 30–60 sekundach
