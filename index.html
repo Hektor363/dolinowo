@@ -319,6 +319,69 @@
       section {
         padding: 70px 0;
       }
+      .accordion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 50px;
+}
+
+.accordion-item {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+}
+
+.accordion-item:hover {
+  transform: translateY(-4px);
+}
+
+.accordion-header {
+  padding: 28px;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: #f7f5f2;
+}
+
+.accordion-item:hover .accordion-content {
+  max-height: 1000px;
+}
+
+.accordion-content ul {
+  list-style: none;
+  padding: 0 28px 28px;
+}
+
+.accordion-content li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  color: #444;
+}
+
+.accordion-content li:last-child {
+  border-bottom: none;
+}
+
+.distance {
+  color: #35624a;
+  font-weight: 600;
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+}
     }
     
   </style>
@@ -458,26 +521,91 @@
 
     <h2 class="section-title">Poznaj okolice</h2>
 
-    <div class="attractions-grid">
+    <p class="section-subtitle">
+      Kudowa-Zdrój i okolice oferują dziesiątki atrakcji — od górskich szlaków i uzdrowisk po zamki, rodzinne atrakcje i wycieczki do Czech.
+    </p>
 
-      <div class="attraction-card">
-        <h3>Błędne Skały</h3>
-        <p>Malowniczy skalny labirynt będący jedną z największych atrakcji Gór Stołowych.</p>
+    <div class="accordion-grid">
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          🥾 Szlaki i natura
+        </div>
+
+        <div class="accordion-content">
+          <ul>
+            <li>Błędne Skały <span class="distance">ok. 8–10 km</span></li>
+            <li>Park Narodowy Gór Stołowych <span class="distance">ok. 10–20 km</span></li>
+            <li>Szczeliniec Wielki <span class="distance">ok. 15–20 km</span></li>
+            <li>Góry Orlickie <span class="distance">ok. 30–60 km</span></li>
+            <li>Międzygórze <span class="distance">ok. 80–100 km</span></li>
+            <li>Masyw Śnieżnika <span class="distance">ok. 80–100 km</span></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="attraction-card">
-        <h3>Kaplica Czaszek</h3>
-        <p>Jedno z najbardziej wyjątkowych miejsc historycznych w Europie.</p>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          👨‍👩‍👧 Atrakcje rodzinne
+        </div>
+
+        <div class="accordion-content">
+          <ul>
+            <li>Muzeum Zabawek <span class="distance">ok. 1–2 km</span></li>
+            <li>Skansen Ginących Zawodów <span class="distance">ok. 2–3 km</span></li>
+            <li>Leśny Lud <span class="distance">ok. 2–3 km</span></li>
+            <li>Park Dinozaurów <span class="distance">ok. 15–18 km</span></li>
+            <li>Muzeum Papiernictwa <span class="distance">ok. 15–18 km</span></li>
+            <li>Jaskinia Niedźwiedzia <span class="distance">ok. 70–90 km</span></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="attraction-card">
-        <h3>Muzeum Zabawek</h3>
-        <p>Magiczne miejsce dla dzieci i dorosłych pełne nostalgii i historii.</p>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          🏰 Zamki i historia
+        </div>
+
+        <div class="accordion-content">
+          <ul>
+            <li>Kaplica Czaszek <span class="distance">ok. 2–3 km</span></li>
+            <li>Zamek Náchod <span class="distance">ok. 10–15 km</span></li>
+            <li>Zamek Leśna Skała <span class="distance">ok. 20–25 km</span></li>
+            <li>Zamek Nové Město nad Metují <span class="distance">ok. 25–30 km</span></li>
+            <li>Twierdza Kłodzko <span class="distance">ok. 35–40 km</span></li>
+            <li>Zamek Książ <span class="distance">ok. 55–70 km</span></li>
+            <li>Zamek Grodno <span class="distance">ok. 70–80 km</span></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="attraction-card">
-        <h3>Szlaki górskie</h3>
-        <p>Kudowa‑Zdrój to doskonała baza wypadowa na piesze i rowerowe wycieczki.</p>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          🌳 Relaks i uzdrowiska
+        </div>
+
+        <div class="accordion-content">
+          <ul>
+            <li>Park Zdrojowy w Kudowie-Zdroju <span class="distance">0–2 km</span></li>
+            <li>Duszniki-Zdrój <span class="distance">ok. 15–18 km</span></li>
+            <li>Polanica-Zdrój <span class="distance">ok. 30–35 km</span></li>
+            <li>Jezioro Bystrzyckie <span class="distance">ok. 70–80 km</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          🇨🇿 Wycieczki do Czech
+        </div>
+
+        <div class="accordion-content">
+          <ul>
+            <li>Náchod <span class="distance">ok. 10–15 km</span></li>
+            <li>Nové Město nad Metují <span class="distance">ok. 25–30 km</span></li>
+            <li>Góry Orlickie <span class="distance">ok. 30–60 km</span></li>
+          </ul>
+        </div>
       </div>
 
     </div>
