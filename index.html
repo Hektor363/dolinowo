@@ -49,7 +49,35 @@
 }
 
 .accordion-item:hover .accordion-content {
-  max-height: 1000px;
+  max-height: 2000px;
+}
+
+[data-extra] {
+  display: none;
+}
+
+[data-extra].visible {
+  display: list-item;
+}
+
+.show-more-btn {
+  display: block;
+  margin: 4px 28px 20px;
+  background: none;
+  border: 1px solid #35624a;
+  color: #35624a;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  width: calc(100% - 56px);
+}
+
+.show-more-btn:hover {
+  background: #35624a;
+  color: white;
 }
 
 .accordion-content ul {
@@ -383,57 +411,12 @@
       section {
         padding: 70px 0;
       }
-
-      .extra-attractions {
-  max-height: 0;
-  overflow: hidden;
-  transition: all .4s ease;
-}
-
-.extra-attractions.active {
-  max-height: 1000px;
-}
-
-.show-more-btn {
-  width: calc(100% - 56px);
-  margin: 0 28px 28px;
-  background: #35624a;
-  border-radius: 12px;
-  padding: 12px;
-  color: white;
-  cursor: pointer;
-}
-
-.show-more-btn:hover {
-  background: #274a38;
-}
       
     }
     
   </style>
 </head>
-  
-<script>
-document.querySelectorAll('.show-more-btn').forEach(btn => {
 
-  btn.addEventListener('click', () => {
-
-    const hidden =
-      btn.previousElementSibling;
-
-    hidden.classList.toggle('active');
-
-    if(hidden.classList.contains('active')){
-      btn.textContent = 'Pokaż mniej';
-    } else {
-      btn.textContent = 'Pokaż więcej';
-    }
-
-  });
-
-});
-</script>
-  
 <body>
 
 <header>
@@ -578,53 +561,60 @@ document.querySelectorAll('.show-more-btn').forEach(btn => {
         <div class="accordion-header">
           🥾 Szlaki i natura
         </div>
-
         <div class="accordion-content">
           <ul>
-            <li>Błędne Skały <span class="distance">ok. 8–10 km</span></li>
-            <li>Park Narodowy Gór Stołowych <span class="distance">ok. 10–20 km</span></li>
-            <li>Szczeliniec Wielki <span class="distance">ok. 15–20 km</span></li>
-            <li>Góry Orlickie <span class="distance">ok. 30–60 km</span></li>
-            <li>Międzygórze <span class="distance">ok. 80–100 km</span></li>
-            <li>Masyw Śnieżnika <span class="distance">ok. 80–100 km</span></li>
+            <li>Błędne Skały <span class="distance">13 km</span></li>
+            <li>Szczeliniec Wielki <span class="distance">14 km</span></li>
+            <li>Skalne Czaszka <span class="distance">14 km</span></li>
+            <li>Radkowskie Skalne Bastiony <span class="distance">19 km</span></li>
+            <li>Wieża widokowa na Orlicy <span class="distance">20 km</span></li>
+            <li>Skalne Grzyby <span class="distance">25 km</span></li>
+            <li data-extra>Skalne Miasto Ostaš <span class="distance">30 km</span></li>
+            <li data-extra>Wielka Desztna <span class="distance">34 km</span></li>
+            <li data-extra>Broumovské Stěny <span class="distance">36 km</span></li>
+            <li data-extra>Teplickie Skały <span class="distance">37 km</span></li>
+            <li data-extra>Jagodna (wieża widokowa) <span class="distance">39 km</span></li>
+            <li data-extra>Krzyżna Góra i Wzgórze Krzyżowe <span class="distance">40 km</span></li>
+            <li data-extra>Adršpach Skalne Miasto <span class="distance">40 km</span></li>
+            <li data-extra>Jaskinia Niedźwiedzia (Kletno) <span class="distance">73 km</span></li>
+            <li data-extra>Śnieżnik <span class="distance">89 km</span></li>
+          </ul>
+          <button class="show-more-btn" onclick="toggleMore(this)">Pokaż więcej</button>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">
+          🚴 Aktywny wypoczynek
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li>Startowiska paralotniowe Kudowa-Czermna <span class="distance">1 km</span></li>
+            <li>Singletrack Glacensis (Everest Brzozowe) <span class="distance">7 km</span></li>
+            <li>Family Bike Park Zieleniec <span class="distance">23 km</span></li>
+            <li>Lądowisko Wielkie Pośna <span class="distance">20 km</span></li>
+            <li>Biegi górskie <span class="distance"></span></li>
+            <li>Hulajnogi Czarna Góra <span class="distance">69 km</span></li>
           </ul>
         </div>
       </div>
 
       <div class="accordion-item">
         <div class="accordion-header">
-          👨‍👩‍👧 Atrakcje rodzinne
+          👨‍👩‍👧‍👦 Atrakcje rodzinne
         </div>
-
         <div class="accordion-content">
-         <ul>
-  <li>Błędne Skały <span class="distance">13 km</span></li>
-  <li>Szczeliniec Wielki <span class="distance">14 km</span></li>
-  <li>Skalna Czaszka <span class="distance">14 km</span></li>
-  <li>Radkowskie Skalne Bastiony <span class="distance">19 km</span></li>
-  <li>Wieża widokowa na Orlicy <span class="distance">20 km</span></li>
-  <li>Skalne Grzyby <span class="distance">25 km</span></li>
-</ul>
-
-<div class="extra-attractions">
-
-  <ul>
-    <li>Skalne Miasto Ostaš <span class="distance">30 km</span></li>
-    <li>Wielka Desztna <span class="distance">34 km</span></li>
-    <li>Broumovské Stěny <span class="distance">36 km</span></li>
-    <li>Teplickie Skały <span class="distance">37 km</span></li>
-    <li>Jagodna (wieża widokowa) <span class="distance">39 km</span></li>
-    <li>Krzyżna Góra i Wzgórze Krzyżowe <span class="distance">40 km</span></li>
-    <li>Adršpach Skalne Miasto <span class="distance">40 km</span></li>
-    <li>Jaskinia Niedźwiedzia <span class="distance">73 km</span></li>
-    <li>Śnieżnik <span class="distance">89 km</span></li>
-  </ul>
-
-</div>
-
-<button class="show-more-btn">
-  Pokaż więcej
-</button>
+          <ul>
+            <li>Muzeum Zabawek w Kudowie-Zdroju <span class="distance">1,5 km</span></li>
+            <li>Ruchoma Szopka w Czermnej <span class="distance">1,6 km</span></li>
+            <li>Skansen w Pstrążnej <span class="distance">4,7 km</span></li>
+            <li>Muzeum Papiernictwa w Dusznikach-Zdroju <span class="distance">18 km</span></li>
+            <li>Safari Park Dvůr Králové <span class="distance">44 km</span></li>
+            <li>Kopalnia Złota w Złotym Stoku <span class="distance">59 km</span></li>
+            <li data-extra>Kopalnia Uranu w Kletnie <span class="distance">72 km</span></li>
+            <li data-extra>Jaskinia Niedźwiedzia (Kletno) <span class="distance">73 km</span></li>
+          </ul>
+          <button class="show-more-btn" onclick="toggleMore(this)">Pokaż więcej</button>
         </div>
       </div>
 
@@ -632,31 +622,31 @@ document.querySelectorAll('.show-more-btn').forEach(btn => {
         <div class="accordion-header">
           🏰 Zamki i historia
         </div>
-
         <div class="accordion-content">
           <ul>
-            <li>Kaplica Czaszek <span class="distance">ok. 2–3 km</span></li>
-            <li>Zamek Náchod <span class="distance">ok. 10–15 km</span></li>
-            <li>Zamek Leśna Skała <span class="distance">ok. 20–25 km</span></li>
-            <li>Zamek Nové Město nad Metují <span class="distance">ok. 25–30 km</span></li>
-            <li>Twierdza Kłodzko <span class="distance">ok. 35–40 km</span></li>
-            <li>Zamek Książ <span class="distance">ok. 55–70 km</span></li>
-            <li>Zamek Grodno <span class="distance">ok. 70–80 km</span></li>
+            <li>Kaplica Czaszek <span class="distance">500 m</span></li>
+            <li>Zamek w Náchodzie <span class="distance">11 km</span></li>
+            <li>Dolnośląska Jerozolima w Wambierzycach <span class="distance">24 km</span></li>
+            <li>Twierdza Kłodzko <span class="distance">38 km</span></li>
+            <li>Podziemna Trasa Turystyczna w Kłodzku <span class="distance">38 km</span></li>
+            <li>Twierdza Srebrna Góra i Fort Ostróg <span class="distance">54 km</span></li>
+            <li data-extra>Zamek Książ w Wałbrzychu <span class="distance">73 km</span></li>
+            <li data-extra>Panorama Racławicka (Wrocław) <span class="distance">128 km</span></li>
           </ul>
+          <button class="show-more-btn" onclick="toggleMore(this)">Pokaż więcej</button>
         </div>
       </div>
 
       <div class="accordion-item">
         <div class="accordion-header">
-          🌳 Relaks i uzdrowiska
+          🌿 Relaks i uzdrowiska
         </div>
-
         <div class="accordion-content">
           <ul>
-            <li>Park Zdrojowy w Kudowie-Zdroju <span class="distance">0–2 km</span></li>
-            <li>Duszniki-Zdrój <span class="distance">ok. 15–18 km</span></li>
-            <li>Polanica-Zdrój <span class="distance">ok. 30–35 km</span></li>
-            <li>Jezioro Bystrzyckie <span class="distance">ok. 70–80 km</span></li>
+            <li>Park Zdrojowy w Kudowie-Zdroju <span class="distance">1 km</span></li>
+            <li>Pasterka (schronisko) <span class="distance">19 km</span></li>
+            <li>Zieleniec <span class="distance">23 km</span></li>
+            <li>Zalew Radkowski <span class="distance">25 km</span></li>
           </ul>
         </div>
       </div>
@@ -665,13 +655,18 @@ document.querySelectorAll('.show-more-btn').forEach(btn => {
         <div class="accordion-header">
           🇨🇿 Wycieczki do Czech
         </div>
-
         <div class="accordion-content">
           <ul>
-            <li>Náchod <span class="distance">ok. 10–15 km</span></li>
-            <li>Nové Město nad Metují <span class="distance">ok. 25–30 km</span></li>
-            <li>Góry Orlickie <span class="distance">ok. 30–60 km</span></li>
+            <li>Skalne Miasto Ostaš <span class="distance">30 km</span></li>
+            <li>Broumovské Stěny <span class="distance">36 km</span></li>
+            <li>Teplickie Skały <span class="distance">37 km</span></li>
+            <li>Adršpach Skalne Miasto <span class="distance">40 km</span></li>
+            <li>Safari Park Dvůr Králové <span class="distance">44 km</span></li>
+            <li>Rumcajsova Wieska <span class="distance">73 km</span></li>
+            <li data-extra>Sky Bridge Dolní Morava <span class="distance">85 km</span></li>
+            <li data-extra>Praga <span class="distance">153 km</span></li>
           </ul>
+          <button class="show-more-btn" onclick="toggleMore(this)">Pokaż więcej</button>
         </div>
       </div>
 
@@ -815,6 +810,20 @@ document.querySelectorAll('.show-more-btn').forEach(btn => {
   <p>© Dolinowo — Domki w Kudowie‑Zdroju</p>
 </footer>
 
+<script>
+  function toggleMore(btn) {
+    const content = btn.closest('.accordion-content');
+    const extras = content.querySelectorAll('[data-extra]');
+    const isExpanded = btn.dataset.expanded === 'true';
+
+    extras.forEach(function(el) {
+      el.classList.toggle('visible', !isExpanded);
+    });
+
+    btn.dataset.expanded = String(!isExpanded);
+    btn.textContent = isExpanded ? 'Pokaż więcej' : 'Pokaż mniej';
+  }
+</script>
+
 </body>
 </html>
-
