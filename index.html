@@ -686,7 +686,7 @@
       <div class="contact-box">
         <h3>Rezerwacja pobytu</h3>
 
-        <form action="https://formspree.io/f/xnjwojaq" method="POST">
+        <form action="/api/submit" method="POST">
 
             <!-- Honeypot – pole antyspamowe -->
          <input type="text" name="_gotcha" tabindex="-1"
@@ -700,7 +700,8 @@
           <input type="date" name="from">
           <input type="date" name="to">
           <textarea name="message" placeholder="Wiadomość"></textarea>
-
+          <div class="cf-turnstile"
+               data-sitekey="0x4AAAAAAFwvP05Z4GXiC_Eo"></div>
           <button type="submit">Wyślij zapytanie</button>
         </form>
       </div>
@@ -714,7 +715,7 @@
         <br>
         <p><strong>Adres:</strong><br> Kudowa‑Zdrój<br>ul. Tadeusza Kościuszki 64E</p>
 
-        <form action="https://formspree.io/f/xnjwojaq" method="POST">
+        <form action="/api/submit" method="POST">
 
            <!-- Honeypot – pole antyspamowe -->
          <input type="text" name="_gotcha" tabindex="-1"
@@ -725,7 +726,8 @@
           <input type="text" name="name" placeholder="Imię" required>
           <input type="email" name="email" placeholder="Email" required>
           <textarea name="message" placeholder="Wiadomość"></textarea>
-
+          <div class="cf-turnstile"
+               data-sitekey="0x4AAAAAAFwvP05Z4GXiC_Eo"></div>
           <button type="submit">Wyślij wiadomość</button>
         </form>
       </div>
@@ -841,6 +843,55 @@
     btn.textContent = isExpanded ? 'Pokaż więcej' : 'Pokaż mniej';
   }
 </script>
+<script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async defer>
+</script>
 
+<script>
+  document.querySelectorAll("form").forEach((form) => {
+    if (!form.querySelector(".cf-turnstile")) return;
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const button = form.querySelector('button[type="submit"]');
+      const originalText = button.textContent;
+
+      button.disabled = true;
+      button.textContent = "Wysyłanie...";
+
+      try {
+        const response = await fetch("/api/submit", {
+          method: "POST",
+          body: new FormData(form)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || "Błąd wysyłania");
+        }
+
+        alert("Dziękujemy! Wiadomość została wysłana.");
+        form.reset();
+
+        if (window.turnstile) {
+          const widget = form.querySelector(".cf-turnstile");
+          const widgetId = widget?.dataset.widgetId;
+
+          if (widgetId) window.turnstile.reset(widgetId);
+        }
+
+      } catch (error) {
+        alert(error.message || "Nie udało się wysłać wiadomości.");
+      } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    });
+  });
+</script>
+  
 </body>
 </html>
