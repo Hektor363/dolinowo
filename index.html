@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * 
     .accordion-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -102,7 +101,7 @@
   margin-top: 4px;
   font-size: 14px;
 }
-    {
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -689,7 +688,7 @@
         <form action="/api/submit" method="POST">
 
             <!-- Honeypot – pole antyspamowe -->
-         <input type="text" name="_gotcha" tabindex="-1"
+         <input type="text" name="website_url_hp" tabindex="-1"
          autocomplete="off"
          style="position:absolute; left:-9999px;"
          aria-hidden="true">
@@ -718,7 +717,7 @@
         <form action="/api/submit" method="POST">
 
            <!-- Honeypot – pole antyspamowe -->
-         <input type="text" name="_gotcha" tabindex="-1"
+         <input type="text" name="website_url_hp" tabindex="-1"
          autocomplete="off"
          style="position:absolute; left:-9999px;"
          aria-hidden="true">
