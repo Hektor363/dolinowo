@@ -843,55 +843,84 @@
     btn.textContent = isExpanded ? 'Pokaż więcej' : 'Pokaż mniej';
   }
 </script>
+
+<!-- Turnstile w trybie explicit: pozwala osobno resetować CAPTCHA w każdym formularzu -->
+<script>
+  window.dolinowoTurnstileIds = new WeakMap();
+
+  window.onTurnstileLoad = function () {
+    document.querySelectorAll('.cf-turnstile').forEach(function (widget) {
+      const form = widget.closest('form');
+
+      if (!form || !widget.dataset.sitekey) return;
+
+      const widgetId = window.turnstile.render(widget, {
+        sitekey: widget.dataset.sitekey
+      });
+
+      window.dolinowoTurnstileIds.set(form, widgetId);
+    });
+  };
+</script>
+
 <script
-  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-  async defer>
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad"
+  async
+  defer>
 </script>
 
 <script>
-  document.querySelectorAll("form").forEach((form) => {
-    if (!form.querySelector(".cf-turnstile")) return;
+  document.querySelectorAll('form').forEach(function (form) {
+    if (!form.querySelector('.cf-turnstile')) return;
 
-    form.addEventListener("submit", async (event) => {
+    form.addEventListener('submit', async function (event) {
       event.preventDefault();
 
       const button = form.querySelector('button[type="submit"]');
-      const originalText = button.textContent;
+      const widgetId = window.dolinowoTurnstileIds?.get(form);
 
+      if (!window.turnstile || !widgetId) {
+        alert('Weryfikacja bezpieczeństwa nie jest jeszcze gotowa. Odśwież stronę i spróbuj ponownie.');
+        return;
+      }
+
+      const originalText = button.textContent;
       button.disabled = true;
-      button.textContent = "Wysyłanie...";
+      button.textContent = 'Wysyłanie...';
 
       try {
-        const response = await fetch("/api/submit", {
-          method: "POST",
-          body: new FormData(form)
+        const formData = new FormData(form);
+        const response = await fetch('/api/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(Object.fromEntries(formData.entries()))
         });
 
         const result = await response.json();
 
         if (!response.ok || !result.success) {
-          throw new Error(result.error || "Błąd wysyłania");
+          throw new Error(result.error || 'Nie udało się wysłać formularza.');
         }
 
-        alert("Dziękujemy! Wiadomość została wysłana.");
+        alert('Dziękujemy! Wiadomość została wysłana.');
         form.reset();
 
-        if (window.turnstile) {
-          const widget = form.querySelector(".cf-turnstile");
-          const widgetId = widget?.dataset.widgetId;
-
-          if (widgetId) window.turnstile.reset(widgetId);
+      } catch (error) {
+        alert(error.message || 'Wystąpił błąd podczas wysyłania wiadomości.');
+      } finally {
+        // Token Turnstile jest jednorazowy – resetujemy widget po każdej próbie.
+        if (window.turnstile && widgetId) {
+          window.turnstile.reset(widgetId);
         }
 
-      } catch (error) {
-        alert(error.message || "Nie udało się wysłać wiadomości.");
-      } finally {
         button.disabled = false;
         button.textContent = originalText;
       }
     });
   });
 </script>
-  
+
 </body>
 </html>
