@@ -110,7 +110,7 @@ export default async function handler(req, res) {
     );
 
     const captcha = await captchaResponse.json();
-    console.log("Turnstile:", captcha);
+
     if (
       !captcha.success ||
       !["dolinowo.pl", "www.dolinowo.pl"].includes(captcha.hostname)
@@ -140,11 +140,12 @@ export default async function handler(req, res) {
       body: formData,
     });
 
-   if (!formspreeResponse.ok) {
-  const details = await formspreeResponse.text();
-  console.error("Formspree error:", formspreeResponse.status, details);
-  return send(502, { success: false, error: "Nie udało się wysłać formularza. Spróbuj ponownie." });
-}
+    if (!formspreeResponse.ok) {
+      return send(502, {
+        success: false,
+        error: "Nie udało się wysłać formularza. Spróbuj ponownie.",
+      });
+    }
 
     return send(200, { success: true });
   } catch (error) {
